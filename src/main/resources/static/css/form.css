@@ -1,0 +1,117 @@
+ul, li {list-style: none}
+div.form-group {margin-top: 1rem;}
+div.post-info {font-size:0.8rem; color:#666666}
+div.post-content {margin-top: 2rem;}
+.field-error {border-color: #dc3545; color: #dc3545;}
+
+div.member-form input[type="text"],
+div.member-form input[type="password"],
+div.member-form input[type="number"] {
+    position: relative;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 4px;
+    height: 2.6rem;
+    padding: 0 0.8rem;
+    font-size: 0.95rem;
+    width: 100%;
+    background: #fdfdfd;
+}
+
+div.member-wrap {
+    max-width: 700px;
+    width: 100%;
+    border: 1px solid #e5e5e5;
+    padding: 3rem;
+    margin: 5rem auto;
+}
+
+.form-box {
+    max-width: 400px;
+    width:100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-title{
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin: 1rem auto;
+    max-width: 400px;
+    text-align: center;
+}
+
+.box input{
+    margin:0.25rem 0;
+}
+
+.box .submit {
+    width:100%;
+    padding: 0.8rem 1rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+}
+
+#checkDuplicate {
+    height:2.5rem;
+    word-break: keep-all;
+    margin-left:0.5rem;
+    border-radius: 4px;
+}
+
+.my-info .my-info-title {
+    /*font-size: 1.2rem;*/
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+
+.my-info .field{
+    border: 1px solid #aaa;
+    border-left: 0;
+    border-right: 0;
+    padding: 0.25rem 0;
+    /*margin-bottom: 4rem*/
+}
+
+.my-info .field li{
+    display: flex;
+    margin: 1rem 0;
+    align-items: center;
+}
+.my-info .field li .title{
+    width: 15%;
+    font-size: 0.95rem;
+    padding: 0.5rem 0;
+}
+.my-info .field li .content{
+    width: 85%;
+    /* display: flex;
+    flex-wrap: wrap;
+    align-items: center; */
+}
+.my-info .field li .content input[type="email"]{
+    width: 60%;
+}
+
+.my-info .btn-box{
+    padding: 2rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.my-info button.cancel{
+    margin-right: 1rem;
+    text-decoration: underline;
+    font-size: 0.95rem;
+    color:#666666;
+}
+.my-info button.submit{
+    width: auto;
+    background-color: #000;
+    color: #fff;
+    border-radius: 4px;
+    font-weight: 500;
+    display: block;
+    padding:0.8rem 1rem;
+}

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout(~{::title}, ~{::style}, ~{::section})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title></title>
+    <style></style>
+</head>
+<body>
+<section>
+    <div style="text-align: center;padding: 10rem;">
+        <span th:text="${msg}" ></span>
+        <div style="margin-top: 2rem">
+            <button type="button" th:onclick="|document.location.href='@{/board}'|" class="btn btn-sm btn-secondary">목록으로</button>
+        </div>
+    </div>
+
+</section>
+</body>
+</html>

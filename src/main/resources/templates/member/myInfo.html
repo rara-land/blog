@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout(~{::title},~{::style}, ~{::section})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>내 정보 수정</title>
+    <style></style>
+</head>
+<body>
+<section>
+    <div class="my-info">
+        <h2 class="my-info-title">내 정보 수정</h2>
+        <form th:object="${form}" method="post">
+            <ul class="field">
+                <li>
+                    <div class="title">아이디</div>
+                    <div class="content">
+                        <div class="box">
+                            <input type="text" class="form-control" th:field="*{memberId}" th:value="*{memberId}" readonly/>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="title">비밀번호</div>
+                    <div class="content">
+                        <div class="box">
+                            <input type="password" class="form-control" th:field="*{password}" placeholder="비밀번호" >
+                            <div class="field-error" th:errors="*{password}"></div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="title">비밀번호 확인</div>
+                    <div class="content">
+                        <div class="box">
+                            <input type="password" class="form-control" th:field="*{checkPassword}" placeholder="비밀번호 확인" >
+                            <div class="field-error" th:errors="*{checkPassword}"></div>
+<!--                            <div th:if="${#fields.hasGlobalErrors()}">-->
+<!--                                <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>-->
+<!--                            </div>-->
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="title">이름</div>
+                    <div class="content">
+                        <div class="box">
+                            <input type="text" class="form-control" th:field="*{name}" th:value="*{name}" placeholder="이름">
+                            <div class="field-error" th:errors="*{name}"></div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="btn-box">
+                <button type="button" class="cancel" th:onclick="|document.location.href='@{/}'|">취소</button>
+                <button type="submit" class="submit">수정</button>
+            </div>
+        </form>
+    </div>
+</section>
+</body>
+</html>

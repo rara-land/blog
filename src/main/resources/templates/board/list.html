@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout(~{::title},~{::style}, ~{::section})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>글목록</title>
+    <style>
+        div.empty-list {
+            padding:5rem;
+            clear: both;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<section>
+<div class="title-section">
+    <h2>게시판</h2>
+</div>
+<div style="float: right; margin: 1rem 0;">
+    <button type="button" class="btn btn-secondary" th:onclick="|location.href='@{/board/form}'|">글쓰기</button>
+</div>
+<div class="empty-list" th:if="${param.search} and ${#lists.isEmpty(list)}">
+    검색 조건에 맞는 게시글이 없습니다.
+</div>
+<div class="empty-list" th:if="${param.search} == null and ${#lists.isEmpty(list)}">
+    등록된 게시글이 없습니다.
+</div>
+<table class="table" style="margin-top: 2rem" th:unless="${#lists.isEmpty(list)}">
+    <thead>
+    <tr>
+        <th scope="col" style="width: 10%">번호</th>
+        <th scope="col">제목</th>
+        <th scope="col" style="width: 15%">작성날짜</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="post, postStat : ${list}">
+        <td>[[${post.id}]]</td>
+        <td><a th:href="@{|/board/${post.id}|}">[[${post.title}]]</a></td>
+        <td>[[${#temporals.format(post.regDate, 'yyyy-MM-dd')}]]</td>
+    </tr>
+    </tbody>
+</table>
+<div style="text-align:center;">
+<nav aria-label="Page navigation example" th:if="${page.totalPage gt 1}">
+    <ul class="pagination" style="display: inline-flex;">
+        <li class="page-item" th:if="${page.previous}">
+            <a class="page-link" th:href="@{/board(page=${page.firstPage})}" aria-label="First">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only"></span>
+            </a>
+        </li>
+        <li class="page-item" th:if="${page.previous}">
+            <a class="page-link" th:href="@{/board(page=${page.previous})}" aria-label="Previous">
+                <span aria-hidden="true">&lt;</span>
+                <span class="sr-only"></span>
+            </a>
+        </li>
+        <li class="page-item" th:each="pageIndex : ${page.pageList}" th:classappend="${pageIndex} == ${page.currentPage} ? 'disabled' : ''">
+            <a class="page-link" th:href="@{/board(page=${pageIndex})}">[[${pageIndex}]]</a>
+        </li>
+        <li class="page-item" th:if="${page.next}">
+            <a class="page-link" th:href="@{/board(page=${page.next})}" aria-label="Next">
+                <span aria-hidden="true">&gt;</span>
+                <span class="sr-only"></span>
+            </a>
+        </li>
+        <li class="page-item" th:if="${page.next}">
+            <a class="page-link" th:href="@{/board(page=${page.totalPage})}" aria-label="Last">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only"></span>
+            </a>
+        </li>
+    </ul>
+</nav>
+</div>
+</section>
+</body>
+</html>

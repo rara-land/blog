@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/test
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+logging.level:
+  org.hibernate.SQL: debug
+
+custom:
+  path:
+    file-real-upload-path: "/Users/sora/Documents/workspace/spring-study/file-upload/"
+    file-path: "/upload/images/"
+
+server:
+  error:
+    whitelabel:
+      enabled: false

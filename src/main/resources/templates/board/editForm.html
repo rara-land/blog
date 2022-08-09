@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout(~{::title}, ~{::style}, ~{::section})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>글수정</title>
+    <style></style>
+</head>
+<body>
+<section>
+<form action="" method="post" th:object="${form}" id="form">
+    <input type="hidden" th:field="*{id}" th:value="*{id}">
+    <div class="title-section">
+        <h2>글수정</h2>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-1 col-form-label">제목</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" th:field="*{title}" th:value="*{title}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-1 col-form-label">내용</label>
+        <div class="col-sm-10">
+            <textarea id="content" rows="20" class="form-control" style="width:100%; min-width:0;" th:field="*{content}" th:value="*{content}"></textarea>
+        </div>
+    </div>
+    <div style="text-align: center; margin: 1rem 0;">
+        <button type="button" onclick="beforeSubmit()" class="btn btn-secondary">수정</button>
+    <button type="button" class="btn btn-secondary" th:onclick="|location.href='@{|/board/*{id}|}'|">취소</button>
+    </div>
+</form>
+<script type="text/javascript" src="/libs/smarteditor/js/HuskyEZCreator.js" th:href="@{/libs/smarteditor/js/HuskyEZCreator.js}" charset="utf-8"></script>
+<script id="smartEditor" type="text/javascript">
+    let oEditors = [];
+
+    nhn.husky.EZCreator.createInIFrame({
+        oAppRef: oEditors,
+        elPlaceHolder: "content",  //textarea ID 입력
+        sSkinURI: "/libs/smarteditor/SmartEditor2Skin.html",  //martEditor2Skin.html 경로 입력
+        fCreator: "createSEditor2",
+        htParams : {
+            // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+            bUseToolbar : true,
+            // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+            bUseVerticalResizer : false,
+            // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+            bUseModeChanger : false
+        }
+    });
+</script>
+<script>
+
+    function beforeSubmit(){
+        oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
+        //스마트 에디터 값을 텍스트컨텐츠로 전달
+        let content = document.getElementById("content").value;
+
+        if (content == "" || content == null || content == "&nbsp;" || content == "<p>&nbsp;</p>") {
+            alert("내용을 입력해 주세요.");
+            oEditors.getById["content"].exec("FOCUS");
+            return false;
+        }
+
+        document.getElementById("form").submit();
+    }
+
+</script>
+</section>
+</body>
+</html>
