@@ -1,5 +1,6 @@
 package rara.board.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import rara.board.Util;
 import rara.board.constant.SessionConst;
 import rara.board.domain.MemRegistryCheck;
@@ -32,6 +33,11 @@ public class MemberController {
 
     private final MemberService memberService;
     private final MemberRepository memberRepository;
+
+    @Value("${custom.auth.redirect-uri}")
+    private String kakaoRedirectUri;
+    @Value("${custom.auth.client-key}")
+    private String kakaoClientId;
 
     @GetMapping("/register")
     public String registerForm(Model model) {
@@ -66,6 +72,8 @@ public class MemberController {
     public String loginForm(Model model, @RequestParam(defaultValue = "/") String redirectUrl) {
         model.addAttribute("redirectUrl", redirectUrl);
         model.addAttribute("form", new MemberDto());
+        model.addAttribute("kakaoRedirectUri", kakaoRedirectUri);
+        model.addAttribute("kakaoClientId", kakaoClientId);
         return "home/login";
     }
 
@@ -165,6 +173,13 @@ public class MemberController {
         memberService.update(sessionMember.getId(), memberDto.getName(), memberDto.getPassword());
 
         return "redirect:/member/myInfo";
+    }
+
+    @GetMapping("/kakao")
+    public String kakaoLogin(String code) {
+        memberService.kakaoLogin(code);
+
+        return "redirect:/";
     }
 
     private boolean checkRegexPassword(String password) {
