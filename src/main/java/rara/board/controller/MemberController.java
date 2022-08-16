@@ -104,8 +104,7 @@ public class MemberController {
                 return result;
             }
 
-            HttpSession session = request.getSession();
-            session.setAttribute(SessionConst.LOGIN_SESS_ID, member);
+            memberService.setLoginSession(request, member);
         }
 
         result.put("result", true);
@@ -176,8 +175,8 @@ public class MemberController {
     }
 
     @GetMapping("/kakao")
-    public String kakaoLogin(String code) {
-        memberService.kakaoLogin(code);
+    public String kakaoLogin(HttpServletRequest request, String code) {
+        memberService.kakaoLogin(request, code);
 
         return "redirect:/";
     }

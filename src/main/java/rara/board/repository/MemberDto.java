@@ -38,4 +38,6 @@ public class MemberDto {
     private String password;
     @NotBlank(message = "비밀번호를 한 번 더 입력해 주세요.", groups = MemRegistryCheck.class)
     private String checkPassword;
+
+    private String email;
 }

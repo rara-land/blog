@@ -3,6 +3,7 @@ package rara.board.repository;
 import rara.board.domain.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import rara.board.domain.SnsType;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -33,5 +34,13 @@ public class MemberRepository {
 
     public List<Member> findAll() {
         return em.createQuery("select m from Member m", Member.class).getResultList();
+    }
+
+    public Optional<Member> findBySnsId(Long id, SnsType snsType) {
+        return em.createQuery("select m from Member m where m.memberId = :memberId and m.snsType = :snsType order by m.id asc", Member.class)
+                .setParameter("memberId", id.toString())
+                .setParameter("snsType", snsType)
+                .getResultList()
+                .stream().findFirst();
     }
 }

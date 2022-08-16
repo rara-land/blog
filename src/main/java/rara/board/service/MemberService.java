@@ -3,7 +3,9 @@ package rara.board.service;
 import rara.board.auth.Kakao;
 import rara.board.auth.KakaoUserInfo;
 import rara.board.constant.MemberConst;
+import rara.board.constant.SessionConst;
 import rara.board.domain.Member;
+import rara.board.domain.SnsType;
 import rara.board.repository.MemberDto;
 import rara.board.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +14,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -62,13 +66,36 @@ public class MemberService {
     }
 
 
-    public void kakaoLogin(String code) {
+    public void kakaoLogin(HttpServletRequest request, String code) {
         KakaoUserInfo userInfo = kakao.getUserInfo(code);
 
-        /**
-         * todo
-         * 1. member에 sns type과 sns id (long type) 컬럼 추가 필요
-         * 2. userinfo 의 아이디가 이미 등록되어있는지 확인 필요.
-         */
+        Optional<Member> optionalMember = memberRepository.findBySnsId(userInfo.getId(), SnsType.KAKAO);
+
+        Member member;
+
+        if (optionalMember.isEmpty()) {
+            member = new Member();
+            member.setMemberId(userInfo.getId().toString());
+            member.setName(userInfo.getName());
+            member.setLevel(MemberConst.MEMBER_BASIC_LEVEL);
+            member.setSnsType(SnsType.KAKAO);
+            member.setRegDate(LocalDateTime.now());
+
+            if (!userInfo.getEmail().isEmpty()) {
+                member.setEmail(userInfo.getEmail());
+            }
+
+            memberRepository.save(member);
+
+        } else {
+            member = optionalMember.get();
+        }
+
+        setLoginSession(request, member);
+    }
+
+    public void setLoginSession(HttpServletRequest request, Member member) {
+        HttpSession session = request.getSession();
+        session.setAttribute(SessionConst.LOGIN_SESS_ID, member);
     }
 }

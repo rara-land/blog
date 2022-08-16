@@ -2,9 +2,7 @@ package rara.board.domain;
 
 import lombok.Getter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -19,6 +17,11 @@ public class Member {
     private Integer level;
     private String memberId;
     private String password;
+
+    @Enumerated(value = EnumType.STRING)
+    private SnsType snsType;
+    
+    private String email;
     private LocalDateTime regDate;
 
     public void setName(String name) {
@@ -41,6 +44,14 @@ public class Member {
         this.regDate = regDate;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setSnsType(SnsType snsType) {
+        this.snsType = snsType;
+    }
+
     @Override
     public String toString() {
         return "Member{" +
@@ -49,6 +60,8 @@ public class Member {
                 ", level=" + level +
                 ", memberId='" + memberId + '\'' +
                 ", password='" + password + '\'' +
+                ", snsType=" + snsType +
+                ", email='" + email + '\'' +
                 ", regDate=" + regDate +
                 '}';
     }
