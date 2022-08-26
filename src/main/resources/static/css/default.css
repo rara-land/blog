@@ -8,3 +8,12 @@ button{
     margin: 0;
     cursor: pointer;
 }
+
+a {
+    text-decoration: none !important;
+    color: #333333 !important;
+}
+
+body {
+    color: #333;
+}
