@@ -1,4 +1,7 @@
-.title-section {border-bottom: 1px solid #cccccc; margin-bottom: 1rem;}
+.title-section {
+    /*border-bottom: 1px solid #cccccc; */
+    margin-bottom: 1rem;
+}
 
 button{
     border:0;

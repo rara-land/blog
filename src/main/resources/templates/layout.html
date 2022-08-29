@@ -7,62 +7,6 @@
     <link rel="stylesheet" href="../css/layout.css" th:href="@{/css/layout.css}">
     <link rel="stylesheet" href="../css/default.css" th:href="@{/css/default.css}">
     <title th:replace="${title}">title</title>
-    <style>
-        .container>section {padding:40px 0; max-width: 700px; margin: auto}
-        #search {
-            width: 100%;
-            background-color: #000;
-            border: 0.1rem solid #999;
-            color: #999;
-        }
-
-        /*.search-box {*/
-        /*    position: relative;*/
-        /*    width : 75%;*/
-        /*    margin-bottom: 0.5rem;*/
-        /*}*/
-
-        /*.search-box>img {*/
-        /*    position: absolute;*/
-        /*    width: 1rem;*/
-        /*    top: 0.5rem;*/
-        /*    right: 0.6rem;*/
-        /*}*/
-
-        .top {
-            height:4rem;
-            background-color: #000000;
-            width: 100%;
-            color: #fff;
-        }
-
-        .top-inner {
-            width: 90%;
-            height: 4rem;
-            margin: 0 auto;
-
-        }
-
-        .top-title {
-            font-size: 2rem;
-            font-weight: 600;
-            display: inline-block;
-            line-height: 4rem;
-            height: 4rem;
-            color: #fffdef;
-            float: left;
-        }
-
-        .top-title>a {
-            color: #fffdef;
-        }
-
-        .search-box {
-            display: inline-block;
-            float: right;
-            height: 4rem;
-        }
-    </style>
     <th:block th:replace="${style}"/>
 </head>
 <body>
@@ -74,40 +18,22 @@
             </div>
             <form method="get" action="/board">
             <div class="search-box">
-
                 <input type="text" name="search" id="search" class="form-control form-control-sm" th:value="${param.search}">
-
-
+                <img th:src="@{/icon/glass.png}">
             </div>
             </form>
-
+            <div class="menu">
+                <ul>
+                    <li th:unless="${session.member}"><a href="/member/register">회원가입</a></li>
+                    <li th:unless="${session.member}"><a href="/member/login">로그인</a></li>
+                    <li th:if="${session.member}"><a href="#">[[${session.member.getName()}]] 님</a></li>
+                    <li th:if="${session.member}"><a href="/member/logout">로그아웃</a></li>
+                    <li th:if="${session.member}"><a href="/member/myInfo">내 정보 수정</a></li>
+                    <li><a href="/board">게시판</a></li>
+                </ul>
+            </div>
         </div>
     </div>
-<!--
-    <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li class="sidebar-brand">
-                <a href="/">RABLOG </a>
-            </li>
-            <li style="padding-left:1.4em">
-                <form method="get" action="/board">
-                    <div class="search-box">
-                        <input type="text" name="search" id="search" class="form-control form-control-sm" th:value="${param.search}">
-                        <img th:src="@{/icon/glass.png}">
-                    </div>
-
-                </form>
-            </li>
-            <li th:unless="${session.member}"><a href="/member/register">회원가입</a></li>
-            <li th:unless="${session.member}"><a href="/member/login">로그인</a></li>
-            <li th:if="${session.member}"><a href="#">[[${session.member.getName()}]] 님</a></li>
-            <li th:if="${session.member}"><a href="/member/logout">로그아웃</a></li>
-            <li th:if="${session.member}"><a href="/member/myInfo">내 정보 수정</a></li>
-            <li><a href="/board">게시판</a></li>
-        </ul>
-    </div>
-    -->
-
     <div class="container py-md-3 pl-md-5" style="height:100%;position: initial;">
         <section style="max-width: 700px; padding:40px 0;" th:replace="${content}"></section>
     </div>

@@ -20,7 +20,7 @@ div.member-form input[type="number"] {
 div.member-wrap {
     max-width: 700px;
     width: 100%;
-    border: 1px solid #e5e5e5;
+    /*border: 1px solid #e5e5e5;*/
     padding: 3rem;
     margin: 5rem auto;
 }
@@ -70,7 +70,6 @@ div.member-wrap {
     border-left: 0;
     border-right: 0;
     padding: 0.25rem 0;
-    /*margin-bottom: 4rem*/
 }
 
 .my-info .field li{
