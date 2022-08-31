@@ -2,7 +2,12 @@
     /*padding-left: 250px;*/
 }
 
-.container>section {padding:40px 0; margin-top: 4rem}
+.container>section {
+    padding:40px 0;
+    /*margin-top: 4rem*/
+    margin: 0 auto;
+    width: 80%;
+}
 
 #sidebar-wrapper {
     position: fixed;
