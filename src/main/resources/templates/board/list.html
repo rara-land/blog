@@ -17,6 +17,11 @@
             border-right: none;
             border-bottom: 1px solid rgba(0,0,0,.125);
         }
+
+        .current-page>a {
+            color: #fff !important;
+            background-color: #333;
+        }
     </style>
 </head>
 <body>
@@ -40,7 +45,7 @@
     </div>
 </div>
 <div style="text-align: right; margin: 1rem 0;">
-    <button type="button" class="btn btn-secondary" th:onclick="|location.href='@{/board/form}'|">글쓰기</button>
+    <button type="button" class="btn btn-dark" th:onclick="|location.href='@{/board/form}'|">글쓰기</button>
 </div>
 <div style="text-align:center;">
 <nav aria-label="Page navigation example" th:if="${page.totalPage gt 1}">
@@ -57,7 +62,7 @@
                 <span class="sr-only"></span>
             </a>
         </li>
-        <li class="page-item" th:each="pageIndex : ${page.pageList}" th:classappend="${pageIndex} == ${page.currentPage} ? 'disabled' : ''">
+        <li class="page-item" th:each="pageIndex : ${page.pageList}" th:classappend="${pageIndex} == ${page.currentPage} ? 'current-page' : ''">
             <a class="page-link" th:href="@{/board(page=${pageIndex})}">[[${pageIndex}]]</a>
         </li>
         <li class="page-item" th:if="${page.next}">

@@ -13,7 +13,7 @@
         <div class="box">
             <div style="display: inline-flex; width:100%; align-items: center">
                 <input type="text" class="form-control" id="memberId" th:field="*{memberId}"  placeholder="아이디">
-                <button type="button" class="btn btn-sm btn-secondary" id="checkDuplicate">중복체크</button>
+                <button type="button" class="btn btn-sm btn-dark" id="checkDuplicate">중복체크</button>
             </div>
             <div class="field-error" th:errors="*{memberId}"></div>
             <input type="password" class="form-control" th:field="*{password}"  placeholder="비밀번호">
@@ -22,7 +22,7 @@
             <div class="field-error" th:errors="*{checkPassword}"></div>
             <input type="text" class="form-control" th:field="*{name}"  placeholder="이름">
             <div class="field-error" th:errors="*{name}"></div>
-            <button type="submit" class="btn btn-secondary submit">회원가입</button>
+            <button type="submit" class="btn btn-dark submit">회원가입</button>
         </div>
     </div>
 </form>
