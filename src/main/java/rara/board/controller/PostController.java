@@ -48,6 +48,10 @@ public class PostController {
         paging.setTotalPage();
 
         List<Post> list = postRepository.findAll(paging, search);
+
+        for (Post post : list) {
+            post.setContent(Util.removeTag(post.getContent()));
+        }
         model.addAttribute("list", list);
         model.addAttribute("page", paging);
         log.info("paging = {}", paging.toString());

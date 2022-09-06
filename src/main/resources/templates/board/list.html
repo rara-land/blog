@@ -18,6 +18,10 @@
             border-bottom: 1px solid rgba(0,0,0,.125);
         }
 
+        .card:hover {
+            cursor: pointer;
+        }
+
         .current-page>a {
             color: #fff !important;
             background-color: #333;
@@ -40,7 +44,7 @@
         <!--<img class="card-img-top" src="..." alt="Card image cap">-->
         <div class="card-body">
             <h5 class="card-title"><a th:href="@{|/board/${post.id}|}">[[${post.title}]]</a></h5>
-            <p class="card-text">[[${post.content}]]</p>
+            <p class="card-text" th:text="${post.content}"></p>
         </div>
     </div>
 </div>
