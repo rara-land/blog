@@ -2,28 +2,30 @@
 <html th:replace="~{layout :: layout(~{::title}, ~{::style},~{::section})}" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>글 읽기</title>
-    <style></style>
+    <style>
+        .list-group-item {
+            border-left: none;
+            border-right: none;
+        }
+    </style>
 </head>
 <body>
 <section>
     <div style="float: right; margin: 1rem 0;">
-        <button type="button" class="btn btn-sm btn-secondary" th:if="${session.member.id} == ${member.id}" th:onclick="|location.href='@{|/board/edit/${data.id}|}'|">수정</button>
-        <button type="button" class="btn btn-sm btn-secondary" th:if="${session.member.id} == ${member.id}" id="delete">삭제</button>
-        <button type="button" class="btn btn-sm btn-secondary" th:onclick="|location.href='@{/board}'|">목록</button>
-        <button type="button" class="btn btn-sm btn-secondary" th:onclick="|location.href='@{/board/form}'|">글쓰기</button>
+        <button type="button" class="btn btn-sm btn-dark" th:if="${session.member.id} == ${member.id}" th:onclick="|location.href='@{|/board/edit/${data.id}|}'|">수정</button>
+        <button type="button" class="btn btn-sm btn-dark" th:if="${session.member.id} == ${member.id}" id="delete">삭제</button>
+        <button type="button" class="btn btn-sm btn-dark" th:onclick="|location.href='@{/board}'|">목록</button>
+        <button type="button" class="btn btn-sm btn-dark" th:onclick="|location.href='@{/board/form}'|">글쓰기</button>
     </div>
     <h2 th:text="${data.title}"></h2>
     <div class="post-info">[[${member.name}]] [[${#temporals.format(data.regDate, 'yyyy-MM-dd')}]]</div>
     <div class="post-content" th:utext="${#strings.replace(data.content, '&#10;' , '&lt;br /&gt;')}"></div>
 
     <ul class="list-group" style="margin: 4rem 0">
-<!--    <ul class="list-group list-group-flush"  style="margin: 4rem 0">-->
         <li th:if="${previous}" class="list-group-item d-flex align-items-center">
-<!--        <li th:if="${previous}" class="list-group-item">-->
             <b>이전글</b>&nbsp;<a style="color:#000;text-decoration:none" th:href="@{|/board/${previous.id}|}">[[${previous.title}]]</a>
         </li>
         <li th:if="${next}" class="list-group-item d-flex align-items-center">
-<!--        <li th:if="${next}" class="list-group-item">-->
             <b>다음글</b>&nbsp; <a style="color:#000;text-decoration:none" th:href="@{|/board/${next.id}|}">[[${next.title}]]</a>
         </li>
     </ul>
