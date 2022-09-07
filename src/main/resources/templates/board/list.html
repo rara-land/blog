@@ -10,7 +10,7 @@
         }
 
         .card {
-            padding: 1.5rem 0;
+            padding: 1rem 0;
             position: initial !important;
             border-top: none;
             border-left: none;
@@ -30,9 +30,6 @@
 </head>
 <body>
 <section>
-<div class="title-section">
-    <h2></h2>
-</div>
 <div class="empty-list" th:if="${param.search} and ${#lists.isEmpty(list)}">
     검색 조건에 맞는 게시글이 없습니다.
 </div>
