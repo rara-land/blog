@@ -14,8 +14,8 @@
             <input type="text" class="form-control" th:field="*{memberId}" placeholder="아이디">
             <input type="password" class="form-control" th:field="*{password}" placeholder="비밀번호">
             <button type="button" id="submit" class="btn btn-dark submit" style="height:3.5rem; font-size: 1.25rem">로그인</button>
-            <button style="width:100%;margin-top: 0.7rem"
-            th:href="@{|https://kauth.kakao.com/oauth/authorize?client_id=${kakaoClientId}&redirect_uri=${kakaoRedirectUri}&response_type=code&prompt=login|}">
+            <button type="button" style="width:100%;margin-top: 0.7rem"
+            th:onclick="|location.href='@{|https://kauth.kakao.com/oauth/authorize?client_id=${kakaoClientId}&redirect_uri=${kakaoRedirectUri}&response_type=code&prompt=login|}'|">
                 <img th:src="@{/icon/kakao_login_large_wide.png}" alt="" style="width: 100%;height: 3.5rem">
             </button>
         </div>

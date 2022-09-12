@@ -46,7 +46,6 @@
 </div>
 <div th:unless="${#lists.isEmpty(list)}">
     <div class="card"  th:each="post, postStat : ${list}" th:onclick="|location.href='@{|/board/${post.id}|}'|">
-        <!--<img class="card-img-top" src="..." alt="Card image cap">-->
         <div class="card-body">
             <h5 class="card-title"><a th:href="@{|/board/${post.id}|}">[[${post.title}]]</a></h5>
             <p class="card-text" th:text="${post.content}"></p>
