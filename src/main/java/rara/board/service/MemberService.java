@@ -81,7 +81,7 @@ public class MemberService {
             member.setSnsType(SnsType.KAKAO);
             member.setRegDate(LocalDateTime.now());
 
-            if (!userInfo.getEmail().isEmpty()) {
+            if (userInfo.getEmail() != null) {
                 member.setEmail(userInfo.getEmail());
             }
 

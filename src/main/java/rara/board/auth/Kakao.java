@@ -90,12 +90,15 @@ public class Kakao {
             JSONObject properties = (JSONObject) jsonParser.parse(body.get("properties").toString());
 
             Long id = (Long) body.get("id");
-            String email = kakao_account.get("email").toString();
             String name = properties.get("nickname").toString();
 
             kakaoUserInfo.setId(id);
-            kakaoUserInfo.setEmail(email);
             kakaoUserInfo.setName(name);
+
+            if (kakao_account.containsKey("email")) {
+                String email = kakao_account.get("email").toString();
+                kakaoUserInfo.setEmail(email);
+            }
 
         } catch (ParseException e) {
             e.printStackTrace();
